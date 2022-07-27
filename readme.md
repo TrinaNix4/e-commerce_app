@@ -20,3 +20,10 @@ TO DO:
   - install express and nodemon dependencies
     - npm run dev
 - create a 'start script' to run our project
+
+# Admin Panel Page
+
+- need 2 pages to show to user:
+  - sign up -
+    - need input for email, pw and pw confirmation
+    - sign in
