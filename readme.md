@@ -17,4 +17,5 @@ TO DO:
 - create a new project directory
 - generate a package.json file
 - install dependencies to help us write our project
+  - install express and nodemon dependencies
 - create a 'start script' to run our project
