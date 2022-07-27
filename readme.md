@@ -18,4 +18,5 @@ TO DO:
 - generate a package.json file
 - install dependencies to help us write our project
   - install express and nodemon dependencies
+    - npm run dev
 - create a 'start script' to run our project
