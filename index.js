@@ -13,7 +13,7 @@ const app = express();
 app.get("/", (req, res) => {
   res.send(`
     <div>
-      <form>
+      <form method="POST">
         <input name="email" placeholder="email" />
         <input name="password" placeholder="password" />
         <input name="passwordConfirmation" placeholder="password confirmation" />
@@ -21,6 +21,10 @@ app.get("/", (req, res) => {
       </form>
     </div>  
   `);
+});
+
+app.post("/", (req, res) => {
+  res.send("Account created!");
 });
 
 //listen for incoming network traffic on port 3000
