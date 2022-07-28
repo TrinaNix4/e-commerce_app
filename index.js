@@ -3,7 +3,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const app = express();
-
+//parsing done automatically, no need to manually parse it
+app.use(bodyParser.urlencoded({ extended: true }));
 //when user makes a request to root route and a method of GET(get('/'))
 //want to run callback function  and take the string 'hi there' and send it back to whoever just made the request
 
@@ -26,7 +27,7 @@ app.get("/", (req, res) => {
 
 //middleware function; functions in the middle of a request handler
 //takes incoming request, receives the body of the request bit by bit, parses it, and put all info together in the req.body property (using outside library)
-app.post("/", bodyParser.urlencoded({ extended: true }), (req, res) => {
+app.post("/", (req, res) => {
   //get access to email, password, password confirmation
   console.log(req.body);
   res.send("Account created!");
