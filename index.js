@@ -1,5 +1,6 @@
 //require in express
 const express = require("express");
+const bodyParser = require("body-parser");
 
 const app = express();
 
@@ -24,26 +25,8 @@ app.get("/", (req, res) => {
 });
 
 //middleware function; functions in the middle of a request handler
-const bodyParser = (req, res, next) => {
-  //want to run a callback function when some event occurs (data)
-  if (req.method === "POST") {
-    req.on("data", (data) => {
-      //parsed is an array of strings where each string is email, pw, and pw conf.
-      const parsed = data.toString("utf8").split("&");
-      const formData = {};
-      for (let pair of parsed) {
-        const [key, value] = pair.split("=");
-        formData[key] = value;
-      }
-      req.body = formData;
-      next();
-    });
-  } else {
-    next();
-  }
-};
-
-app.post("/", bodyParser, (req, res) => {
+//takes incoming request, receives the body of the request bit by bit, parses it, and put all info together in the req.body property (using outside library)
+app.post("/", bodyParser.urlencoded({ extended: true }), (req, res) => {
   //get access to email, password, password confirmation
   console.log(req.body);
   res.send("Account created!");
