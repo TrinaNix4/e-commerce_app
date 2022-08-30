@@ -16,16 +16,20 @@ class UsersRepository {
 
   async getAll() {
     // Open the file called this.filename
-    const contents = await fs.promises.readFile(this.filename, {
-      encoding: "utf8",
-    });
-
-    // Read its contents
-    console.log(contents);
-
-    // parse the contents
-
-    // Return the parsed data
+    return JSON.parse(
+      await fs.promises.readFile(this.filename, {
+        encoding: "utf8",
+      })
+    );
+  }
+  async create(attrs) {
+    //{email: 'email@email.com', password: 'askdjfek'}
+    //first load up contents of users.json file so we have the most recent data
+    const records = await this.getAll();
+    //push in the new user
+    records.push(attrs);
+    //write the updated 'records' array back to this.filename
+    await fs.promises.writeFile(this.filename, JSON.stringify(records));
   }
 }
 
