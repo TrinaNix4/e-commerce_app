@@ -29,7 +29,15 @@ class UsersRepository {
     //push in the new user
     records.push(attrs);
     //write the updated 'records' array back to this.filename
-    await fs.promises.writeFile(this.filename, JSON.stringify(records));
+    //await fs.promises.writeFile(this.filename, JSON.stringify(records));
+    await this.writeAll(records);
+  }
+  async writeAll(records) {
+    await fs.promises.writeFile(
+      this.filename,
+      //make json file easier to read with null and 2 indentation spaces
+      JSON.stringify(records, null, 2)
+    );
   }
 }
 
