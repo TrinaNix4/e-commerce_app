@@ -34,9 +34,14 @@ class UsersRepository {
 }
 
 const test = async () => {
+  //get accesss to users repository
   const repo = new UsersRepository("users.json");
-
-  await repo.getAll();
+  //save a new record to it
+  await repo.create({ email: "test@test.com", password: "password" });
+  //get all the records we have saved
+  const users = await repo.getAll();
+  //and console log the records
+  console.log(users);
 };
-
+//
 test();
