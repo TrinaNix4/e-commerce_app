@@ -1,4 +1,6 @@
+const { randomUUID } = require("crypto");
 const fs = require("fs");
+const crypto = require("crypto");
 
 class UsersRepository {
   constructor(filename) {
@@ -23,6 +25,7 @@ class UsersRepository {
     );
   }
   async create(attrs) {
+    attrs.id = this.randomID();
     //{email: 'email@email.com', password: 'askdjfek'}
     //first load up contents of users.json file so we have the most recent data
     const records = await this.getAll();
@@ -38,6 +41,9 @@ class UsersRepository {
       //make json file easier to read with null and 2 indentation spaces
       JSON.stringify(records, null, 2)
     );
+  }
+  randomID() {
+    return crypto.randomBytes(4).toString("hex");
   }
 }
 
