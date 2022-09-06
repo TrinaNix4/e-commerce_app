@@ -50,6 +50,14 @@ class UsersRepository {
     const records = await this.getAll();
     return records.find((record) => record.id === id);
   }
+  //pass into the function the id of the record we want to delete
+  async delete(id) {
+    //get a list of all our records
+    const records = await this.getAll();
+    //iterate through the list of records and use filter function to filter out any record that has the same ID as the ID that was passed in 
+    const filteredRecords = records.filter((record) => record.id !== id);
+    wait this.writeAll(filteredRecords)
+  }
 }
 
 const test = async () => {
@@ -65,5 +73,3 @@ const test = async () => {
 };
 //
 test();
-
-//added comments
