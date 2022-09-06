@@ -84,7 +84,7 @@ const test = async () => {
   //get all the records we have saved
   //const users = await repo.getAll();
   //and console log the records
-  await repo.create({ email: "test@test.com" });
+  await repo.update("9bab971b", { password: "mypassword" });
 };
 //
 test();
