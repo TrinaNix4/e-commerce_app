@@ -58,6 +58,22 @@ class UsersRepository {
     const filteredRecords = records.filter((record) => record.id !== id);
     await this.writeAll(filteredRecords);
   }
+  //update - receive an ID and an object with new attributes to update an existing record; find record, update it, and save it
+  async update(id, attrs) {
+    const records = await this.getAll();
+    //iterate over every record, look at each ID and return the one with the ID that matches ID that was passed in
+    const record = records.find((record) => record.id === id);
+
+    //throw an error to say if the record is not found to update
+    if (!record) {
+      throw new Error(`Record with id${id}not found`);
+    }
+    //update the record we just found
+    //takes all the different props and key/value pairs in the attrs object and copy them one by one into the record object
+    Object.assign(record, attrs);
+    //take all of our records and write thema ll back to json file
+    await this.writeAll(records);
+  }
 }
 
 const test = async () => {
@@ -68,7 +84,7 @@ const test = async () => {
   //get all the records we have saved
   //const users = await repo.getAll();
   //and console log the records
-  await repo.delete("2afaf2c0");
+  await repo.create({ email: "test@test.com" });
 };
 //
 test();
