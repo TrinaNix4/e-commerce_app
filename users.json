@@ -11,6 +11,7 @@
   },
   {
     "email": "test@test.com",
-    "id": "9bab971b"
+    "id": "9bab971b",
+    "password": "mypassword"
   }
 ]
