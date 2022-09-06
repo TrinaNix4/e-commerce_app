@@ -54,9 +54,9 @@ class UsersRepository {
   async delete(id) {
     //get a list of all our records
     const records = await this.getAll();
-    //iterate through the list of records and use filter function to filter out any record that has the same ID as the ID that was passed in 
+    //iterate through the list of records and use filter function to filter out any record that has the same ID as the ID that was passed in
     const filteredRecords = records.filter((record) => record.id !== id);
-    wait this.writeAll(filteredRecords)
+    await this.writeAll(filteredRecords);
   }
 }
 
@@ -68,8 +68,7 @@ const test = async () => {
   //get all the records we have saved
   //const users = await repo.getAll();
   //and console log the records
-  const user = await repo.getOne("95405ea7");
-  console.log(user);
+  await repo.delete("2afaf2c0");
 };
 //
 test();
